@@ -26,8 +26,8 @@ function SectionHeading({ kicker, title, body, light = false }: { kicker: string
   </div>;
 }
 
-function PhotoSlot({ label, className = "" }: { label: string; className?: string }) {
-  return <div className={`photo-slot ${className}`} role="img" aria-label={`${label} photography slot awaiting approved image`}><span className="photo-slot-index">01 / IMAGE SLOT</span><span className="photo-slot-label">{label}</span><span className="photo-slot-note">Approved photography will drop in here</span></div>;
+function PhotoSlot({ label, image, className = "" }: { label: string; image: string; className?: string }) {
+  return <div className={`photo-slot ${className}`} role="img" aria-label={`${label} photography`}><img src={image} alt="" /><span className="photo-slot-index">01 / EXPRESS FAVORITE</span><span className="photo-slot-label">{label}</span></div>;
 }
 
 function OwnerNote({ compact = false }: { compact?: boolean }) {
@@ -49,7 +49,7 @@ export default function Home() {
           <div className="hero-actions"><ActionLink href="/order" variant="light">Order online</ActionLink><ActionLink href="/menu" variant="outline">View the menu</ActionLink></div>
           <div className="hero-facts"><span>82 Pane Rd</span><span className="fact-rule" /><a href="tel:+18606658128">(860) 665-8128</a></div>
         </div>
-        <div className="hero-media"><PhotoSlot label="Pizza / hero image" className="photo-slot-hero" /><div className="hero-stamp">PIZZA<br /><span>&</span><br />SCOOPS</div></div>
+        <div className="hero-media"><PhotoSlot label="Pizza / hero image" image="/images/hero-pizza.jpg" className="photo-slot-hero" /><div className="hero-stamp">PIZZA<br /><span>&</span><br />SCOOPS</div></div>
       </div>
       <div className="hero-bottom container"><span>Made for the neighborhood</span><ArrowDownRight size={18} /></div>
     </section>
@@ -64,13 +64,13 @@ export default function Home() {
     <section className="section menu-preview-section">
       <div className="container">
         <div className="section-topline"><SectionHeading kicker="Menu highlights" title={<>Bring an appetite.<br /><em>We’ll handle the rest.</em></>} /><Link href="/menu" className="text-link">See all categories <ArrowUpRight size={16} /></Link></div>
-        <div className="menu-feature-grid"><PhotoSlot label="Pizza / food image" className="photo-slot-feature" /><div className="menu-feature-copy"><span className="feature-number">02</span><h3>Everything you need for the table.</h3><p>Public menu research points to a generous mix of pizza, wings, grinders, dinners, family deals, desserts, and more. The final menu will come from an owner-approved source of truth.</p><ActionLink href="/menu" variant="dark">Explore the menu</ActionLink></div></div>
+        <div className="menu-feature-grid"><PhotoSlot label="Scoops" image="/images/scoops.jpg" className="photo-slot-feature" /><div className="menu-feature-copy"><span className="feature-number">02</span><h3>Everything you need for the table.</h3><p>Public menu research points to a generous mix of pizza, wings, grinders, dinners, family deals, desserts, and more. The final menu will come from an owner-approved source of truth.</p><ActionLink href="/menu" variant="dark">Explore the menu</ActionLink></div></div>
         <OwnerNote />
       </div>
     </section>
 
     <section className="section story-section">
-      <div className="container story-grid"><div className="story-copy"><p className="eyebrow eyebrow-light">The Express experience</p><h2>A real place<br /><em>for real cravings.</em></h2><p>The finished story belongs to the people behind the counter and the neighborhood around them. This is the space for that voice — specific, warm, and unmistakably theirs.</p><ActionLink href="/about" variant="light">About Express</ActionLink></div><PhotoSlot label="Storefront / people image" className="photo-slot-story" /></div>
+      <div className="container story-grid"><div className="story-copy"><p className="eyebrow eyebrow-light">The Express experience</p><h2>A real place<br /><em>for real cravings.</em></h2><p>The finished story belongs to the people behind the counter and the neighborhood around them. This is the space for that voice — specific, warm, and unmistakably theirs.</p><ActionLink href="/about" variant="light">About Express</ActionLink></div><PhotoSlot label="Inside Express" image="/images/interior.jpg" className="photo-slot-story" /></div>
     </section>
 
     <section className="section visit-section"><div className="container visit-grid"><div><SectionHeading kicker="Visit" title={<>Put Express<br /><em>on your route.</em></>} body="A real neighborhood address in Newington, Connecticut. Save the number, check the current hours, and come by hungry." /><div className="visit-actions"><ActionLink href={mapsUrl} variant="dark" external>Get directions</ActionLink><a className="action-link outline-dark" href="tel:+18606658128">Call the shop <Phone size={16} /></a></div></div><div className="visit-panel"><div className="visit-panel-kicker"><MapPin size={18} /> Newington, CT</div><p className="address">82 Pane Rd<br />Newington, CT 06111</p><div className="visit-detail"><Clock3 size={17} /><div><strong>Hours</strong><span>To be confirmed by owner</span></div></div><div className="visit-detail"><Utensils size={17} /><div><strong>Ordering</strong><span>Pickup and delivery options under review</span></div></div></div></div></section>
