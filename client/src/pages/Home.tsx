@@ -4,6 +4,27 @@ import { Link } from "wouter";
 const orderUrl = "https://www.orderbestpizza.com/";
 const mapsUrl = "https://www.google.com/maps/search/?api=1&query=82+Pane+Rd+Newington+CT+06111";
 
+const hours = {
+  delivery: [
+    ["Monday", "10:45 AM – 9:45 PM"],
+    ["Tuesday", "10:45 AM – 9:45 PM"],
+    ["Wednesday", "10:45 AM – 9:45 PM"],
+    ["Thursday", "10:45 AM – 9:45 PM"],
+    ["Friday", "10:30 AM – 10:45 PM"],
+    ["Saturday", "10:45 AM – 10:45 PM"],
+    ["Sunday", "10:45 AM – 8:45 PM"],
+  ],
+  pickup: [
+    ["Monday", "10:45 AM – 10:00 PM"],
+    ["Tuesday", "10:45 AM – 10:00 PM"],
+    ["Wednesday", "10:45 AM – 10:00 PM"],
+    ["Thursday", "10:45 AM – 11:00 PM"],
+    ["Friday", "10:30 AM – 11:00 PM"],
+    ["Saturday", "10:45 AM – 11:00 PM"],
+    ["Sunday", "10:45 AM – 9:00 PM"],
+  ],
+} as const;
+
 const menuGroups = [
   { title: "Start here", items: ["Family Deals", "Pickup Specials", "Lunch Specials"] },
   { title: "The main event", items: ["Pizza", "Specialty Pizza", "Buffalo Wings", "Chicken Tenders", "Calzones", "Stromboli"] },
@@ -33,7 +54,7 @@ function PhotoSlot({ label, image, className = "" }: { label: string; image: str
 function OwnerNote({ compact = false }: { compact?: boolean }) {
   return <div className={`owner-note ${compact ? "compact" : ""}`} role="note">
     <span className="owner-note-mark" aria-hidden="true">i</span>
-    <div><strong>Preview state</strong><p>{compact ? "Menu details and hours will publish after owner confirmation." : "The structure is ready. Current menu, hours, brand assets, and ordering destination still require owner confirmation before launch."}</p></div>
+    <div><strong>Preview state</strong><p>{compact ? "Menu details will publish after owner confirmation." : "The structure is ready. Current menu, brand assets, and ordering destination still require owner confirmation before launch."}</p></div>
   </div>;
 }
 
@@ -73,7 +94,7 @@ export default function Home() {
       <div className="container story-grid"><div className="story-copy"><p className="eyebrow eyebrow-light">The Express experience</p><h2>A real place<br /><em>for real cravings.</em></h2><p>The finished story belongs to the people behind the counter and the neighborhood around them. This is the space for that voice — specific, warm, and unmistakably theirs.</p><ActionLink href="/about" variant="light">About Express</ActionLink></div><PhotoSlot label="Inside Express" image="/images/interior.jpg" className="photo-slot-story" /></div>
     </section>
 
-    <section className="section visit-section"><div className="container visit-grid"><div><SectionHeading kicker="Visit" title={<>Put Express<br /><em>on your route.</em></>} body="A real neighborhood address in Newington, Connecticut. Save the number, check the current hours, and come by hungry." /><div className="visit-actions"><ActionLink href={mapsUrl} variant="dark" external>Get directions</ActionLink><a className="action-link outline-dark" href="tel:+18606658128">Call the shop <Phone size={16} /></a></div></div><div className="visit-panel"><div className="visit-panel-kicker"><MapPin size={18} /> Newington, CT</div><p className="address">82 Pane Rd<br />Newington, CT 06111</p><div className="visit-detail"><Clock3 size={17} /><div><strong>Hours</strong><span>To be confirmed by owner</span></div></div><div className="visit-detail"><Utensils size={17} /><div><strong>Ordering</strong><span>Pickup and delivery options under review</span></div></div></div></div></section>
+    <section className="section visit-section"><div className="container visit-grid"><div><SectionHeading kicker="Visit" title={<>Put Express<br /><em>on your route.</em></>} body="A real neighborhood address in Newington, Connecticut. Save the number, check the hours, and come by hungry." /><div className="visit-actions"><ActionLink href={mapsUrl} variant="dark" external>Get directions</ActionLink><a className="action-link outline-dark" href="tel:+18606658128">Call the shop <Phone size={16} /></a></div></div><div className="visit-panel"><div className="visit-panel-kicker"><MapPin size={18} /> Newington, CT</div><p className="address">82 Pane Rd<br />Newington, CT 06111</p><div className="visit-detail"><Clock3 size={17} /><div><strong>Hours</strong><span>Delivery 10:45 AM – 9:45 PM weekdays</span><span>Pickup until 10:00 PM weekdays</span></div></div><div className="visit-detail"><Utensils size={17} /><div><strong>Ordering</strong><span>Pickup and delivery available</span></div></div></div></div></section>
 
     <section className="cta-section"><div className="container cta-inner"><p className="eyebrow">Whenever the craving hits</p><h2>Make it an<br /><em>Express stop.</em></h2><ActionLink href="/order" variant="dark">Order online</ActionLink></div></section>
   </>;
@@ -92,5 +113,5 @@ export function AboutPage() {
 }
 
 export function VisitPage() {
-  return <div className="page-wrap"><section className="page-hero butter-page-hero"><div className="container narrow"><p className="eyebrow">Visit Express</p><h1>Put the address<br /><em>on your route.</em></h1><p className="page-lede">82 Pane Rd, Newington, CT 06111. Save the number, check the current hours, and use the map for directions.</p><div className="visit-page-actions"><ActionLink href={mapsUrl} variant="dark" external>Get directions</ActionLink><a className="action-link outline-dark" href="tel:+18606658128">Call (860) 665-8128 <Phone size={16} /></a></div></div></section><section className="section visit-details-section"><div className="container visit-details-grid"><div className="map-placeholder"><div className="map-grid" /><MapPin size={36} /><span>82 Pane Rd<br />Newington, CT 06111</span><a href={mapsUrl} target="_blank" rel="noreferrer">Open in Google Maps <ArrowUpRight size={15} /></a></div><div className="visit-detail-copy"><p className="eyebrow">Before you go</p><h2>The useful details,<br /><em>without the guesswork.</em></h2><div className="detail-row"><Clock3 size={20} /><div><strong>Hours</strong><p>Current weekly hours require owner confirmation before launch.</p></div></div><div className="detail-row"><Phone size={20} /><div><strong>Phone</strong><p><a href="tel:+18606658128">(860) 665-8128</a></p></div></div><div className="detail-row"><Utensils size={20} /><div><strong>Order ahead</strong><p>Use the current public ordering destination while the final site is being confirmed.</p></div></div><ActionLink href={orderUrl} variant="dark" external>Open ordering</ActionLink></div></div></section></div>;
+  return <div className="page-wrap"><section className="page-hero butter-page-hero"><div className="container narrow"><p className="eyebrow">Visit Express</p><h1>Put the address<br /><em>on your route.</em></h1><p className="page-lede">82 Pane Rd, Newington, CT 06111. Save the number, check the hours, and use the map for directions.</p><div className="visit-page-actions"><ActionLink href={mapsUrl} variant="dark" external>Get directions</ActionLink><a className="action-link outline-dark" href="tel:+18606658128">Call (860) 665-8128 <Phone size={16} /></a></div></div></section><section className="section visit-details-section"><div className="container visit-details-grid"><div className="map-placeholder"><div className="map-grid" /><MapPin size={36} /><span>82 Pane Rd<br />Newington, CT 06111</span><a href={mapsUrl} target="_blank" rel="noreferrer">Open in Google Maps <ArrowUpRight size={15} /></a></div><div className="visit-detail-copy"><p className="eyebrow">Before you go</p><h2>The useful details,<br /><em>without the guesswork.</em></h2><div className="detail-row hours-detail"><Clock3 size={20} /><div><strong>Hours</strong><div className="hours-grid"><div><b>Delivery</b>{hours.delivery.map(([day, time]) => <p key={`delivery-${day}`}><span>{day}</span><span>{time}</span></p>)}</div><div><b>Pickup</b>{hours.pickup.map(([day, time]) => <p key={`pickup-${day}`}><span>{day}</span><span>{time}</span></p>)}</div></div></div></div><div className="detail-row"><Phone size={20} /><div><strong>Phone</strong><p><a href="tel:+18606658128">(860) 665-8128</a></p></div></div><div className="detail-row"><Utensils size={20} /><div><strong>Order ahead</strong><p>Use the current public ordering destination for pickup and delivery.</p></div></div><ActionLink href={orderUrl} variant="dark" external>Open ordering</ActionLink></div></div></section></div>;
 }
